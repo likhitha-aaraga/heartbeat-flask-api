@@ -1,2 +1,6 @@
 flask
 gunicorn
+azure-storage-blob
+flask-restful
+flask-httpauth
+flask-sqlalchemy
