@@ -4,3 +4,5 @@ azure-storage-blob
 flask-restful
 flask-httpauth
 flask-sqlalchemy
+flask_pymongo
+dnspython
