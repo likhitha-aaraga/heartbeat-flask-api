@@ -4,11 +4,13 @@ import os
 
 app = Flask(__name__)
 
-# ✅ MongoDB Configuration (Using Your Connection String)
-app.config["MONGO_URI"] = "mongodb+srv://likhithaaaraga:<db_password>@mongodbcluster.9z09bie.mongodb.net/apitesting?retryWrites=true&w=majority&appName=MongoDBCluster"
+# ✅ Use Environment Variable for MongoDB Connection
+MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://likhithaaaraga:<db_password>@mongodbcluster.9z09bie.mongodb.net/apitesting?retryWrites=true&w=majority&appName=MongoDBCluster")
+
+app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
 
-# Reference to the "userdata" collection in "apitesting" database
+# Reference to the "userdata" collection
 users_collection = mongo.db.userdata
 
 # ✅ Health Check Route (Root)
@@ -33,9 +35,10 @@ def add_user():
 # ✅ GET Method - Retrieve All Users from MongoDB
 @app.route('/users', methods=['GET'])
 def get_all_users():
-    users = list(users_collection.find({}, {"_id": 0}))  # Exclude MongoDB ObjectId field
+    users = list(users_collection.find({}, {"_id": 0}))  # Exclude MongoDB ObjectId
     return jsonify(users)
 
-# ✅ Run the Flask App (For Local Testing)
+# ✅ Run Flask App (Use Azure's Assigned Port)
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.getenv("PORT", 8080)))
+    port = int(os.environ.get("PORT", 8000))  # Use Azure-assigned port
+    app.run(host='0.0.0.0', port=port)
