@@ -5,7 +5,7 @@ from flask_pymongo import PyMongo
 app = Flask(__name__)
 
 # ✅ Load MongoDB Connection from Azure Environment Variable
-MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://likhithaaaraga:<db_password>@mongodbcluster.9z09bie.mongodb.net/apitesting?retryWrites=true&w=majority&appName=MongoDBCluster")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://likhitha_aaraga:<Likhi501>@mongodbcluster.9z09bie.mongodb.net/?retryWrites=true&w=majority&appName=MongoDBCluster")
 app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
 
