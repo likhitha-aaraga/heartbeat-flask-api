@@ -46,5 +46,4 @@ def get_all_users():
 
 # ✅ Use Azure's Assigned Port
 if __name__ == '__main__':
-    port = int(os.getenv("PORT", 8080))  # Use Azure-assigned port
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=8000)
